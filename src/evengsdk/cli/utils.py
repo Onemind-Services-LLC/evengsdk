@@ -45,7 +45,7 @@ def to_human_readable(obj: Dict, keys: List[str] = []) -> str:
 
 def thread_executor(func, items):
     futures = []
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         for future in executor.map(func, items):
             futures.append(future)
     return futures

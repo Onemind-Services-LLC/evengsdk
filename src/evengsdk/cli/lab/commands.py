@@ -211,7 +211,7 @@ def create_and_configure_nodes(topology: Topology, tasks: List = None) -> None:
         (node, path, topology.get_node_config(node["name"]), tasks)
         for node in topology.nodes
     ]
-    with ThreadPoolExecutor(max_workers=5) as exec:
+    with ThreadPoolExecutor(max_workers=1) as exec:
         exec.map(lambda p: _create_node_workder(*p), params_set)
 
 
