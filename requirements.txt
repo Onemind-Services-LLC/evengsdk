@@ -42,10 +42,10 @@ jinja2==3.1.6
     #   mkdocs-material
     #   mkdocstrings
 jsonpointer==3.0.0
-    # via -r requirements.in
-jsonschema-specifications==2024.10.1
     # via jsonschema
 jsonschema[format]==4.23.0
+    # via -r requirements.in
+jsonschema-specifications==2024.10.1
     # via jsonschema
 markdown==3.7
     # via
@@ -122,7 +122,7 @@ referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
-requests==2.32.3
+requests==2.32.4
     # via
     #   -r requirements.in
     #   mkdocs-material
