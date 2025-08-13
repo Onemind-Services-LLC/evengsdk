@@ -11,6 +11,9 @@ on:
       - opened
       - synchronize
 
+permissions:
+  contents: read
+
 jobs:
   pre_commit:
     name: Run lint rules
@@ -24,7 +27,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - uses: pre-commit/action@v3.0.0
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd
 
   tests:
     name: Run tests

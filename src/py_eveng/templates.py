@@ -21,6 +21,7 @@ class ConfigTemplateBuilder:
             lstrip_blocks=True,
             keep_trailing_newline=True,
             extensions=["jinja2.ext.do"],
+            autoescape=True
         )
         self.env = env
 
