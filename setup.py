@@ -2,16 +2,24 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 
-README = (Path(__file__).parent / "README.md").read_text()
-REQUIRES = [
-    "click>=7.1.1,<8.1.0",
-    "requests>=2.20.0",
-    "python-dotenv",
-    "pyyaml>=5.3,<7.0",
-    "Jinja2>=2.10.3,<3.1.0",
-    "rich==10.16.2",
-    "jsonschema==4.3.3",
-]
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def read_requirements(req_path: Path):
+    # Parse a pip-compile style requirements file, ignoring comments and blanks
+    requires = []
+    for line in read_text(req_path).splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        # keep requirement spec as-is (supports extras and markers)
+        requires.append(stripped)
+    return requires
+
+
+README = read_text(Path(__file__).parent / "README.md")
+REQUIRES = read_requirements(Path(__file__).parent / "requirements.txt")
 
 
 def get_version():
@@ -29,17 +37,17 @@ setup(
     author_email="asaharan@onemindservices.com",
     maintainer="Onemind Services LLC",
     maintainer_email="developers@onemindservices.com",
-    python_requires=">=3.7",
+    python_requires=">=3.10",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
     description=(
         "Python SDK and command line utilities to work with the EVE-NG REST API"
